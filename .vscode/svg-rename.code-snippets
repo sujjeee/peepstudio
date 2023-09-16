@@ -1,0 +1,16 @@
+
+
+{
+	"Typescript React Function Component": {
+	"prefix": "zx",
+	"body": [
+		"import React from 'react'",
+		
+		"export default function $TM_FILENAME_BASE () {",
+		"  return (",
+		"    <>",
+		" "
+	],
+	"description": "Create a custom React component for svg"
+},
+}

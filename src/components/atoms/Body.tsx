@@ -66,12 +66,13 @@ const Body: React.FC<BodyProps> = ({ }) => {
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     overflow="hidden"
-                                    viewBox="0 0 818 769"
+                                    viewBox="0 0 900 900"
                                     style={{ width: "100%", height: "100%" }}
                                     fill="none"
                                 >
-                                    {body.component}
-                                    {/* <Tee1 /> */}
+                                    <g transform="translate(40, 100)" >
+                                        {body.component}
+                                    </g>
                                 </svg>
                             </Label>
                         </div>

@@ -23,8 +23,8 @@ const PeepContext = createContext<PeepContextType | undefined>(undefined);
 // Create the PeepContextProvider component
 export const PeepContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [data, setData] = useState<PeepData>({
-        color: "",
-        head: "",
+        color: "#D08B5B",
+        head: "#HAf01",
         body: "#Ja12",
         face: "#Ca03",
         beard: "",

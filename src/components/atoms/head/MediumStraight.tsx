@@ -1,6 +1,8 @@
+"use client"
+import { usePeep } from '@/lib/context/PeepContext'
 import React from 'react'
-
 export default function MediumStraight() {
+    const { data } = usePeep()
     return (
         <>
 
@@ -9,4 +11,3 @@ export default function MediumStraight() {
         </>
     )
 }
-
