@@ -1,7 +1,8 @@
 import Face from '@/components/atoms/Face'
 import Head from '@/components/atoms/Head'
-import FacialHair from '@/components/atoms/FacialHair'
+import Beard from '@/components/atoms/Beard'
 import AvatarFrame from '@/components/avatar-frame'
+import Body from '@/components/atoms/Body'
 
 export default function Home() {
   return (
@@ -9,11 +10,12 @@ export default function Home() {
       <section className='hidden lg:flex justify-end items-start py-6 '>
         <AvatarFrame />
       </section>
-      <section className='lg:col-span-2 flex flex-col items-center justify-center py-6 lg:px-20 gap-6 h-screen '>
+      <section className='lg:col-span-2 flex flex-col items-center py-6 lg:px-20 gap-6 h-screen '>
         <div className='overflow-y-auto w-full hide_scrollbar flex flex-col gap-5 pb-20 lg:pb-0 '>
+          {/* <Head /> */}
+          <Body />
           <Face />
-          <FacialHair />
-          <Head />
+          <Beard />
         </div>
       </section>
     </main>
