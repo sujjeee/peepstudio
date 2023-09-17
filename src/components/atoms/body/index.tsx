@@ -65,7 +65,7 @@ const createBodyComponents = async () => {
 };
 
 // Call the async function to create the components and bodies arrays
-export const getBody = async () => {
+export const getBodies = async () => {
     const components = await createBodyComponents();
     // Create the bodies array with the generated components
     const bodies = components;

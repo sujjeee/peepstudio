@@ -1,6 +1,6 @@
 "use client"
 import { usePeep } from '@/lib/context/PeepContext'
-import React, { use } from 'react'
+import React from 'react'
 
 export default function Whatever() {
     const { data } = usePeep()
