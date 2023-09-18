@@ -4,7 +4,8 @@ import Beard from '@/components/atoms/Beard'
 import AvatarFrame from '@/components/avatar-frame'
 import Body from '@/components/atoms/Body'
 import TestFrame from '@/test/TestFrame'
-import Skins from '@/components/atoms/Skins'
+import Colors from '@/components/atoms/Colors'
+import RandomData from '@/components/buttons/RandomData'
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
       </section>
       <section className='lg:col-span-2 flex flex-col items-center py-6 lg:px-20 gap-6 h-screen '>
         <div className='overflow-y-auto w-full hide_scrollbar flex flex-col gap-5 pb-20 lg:pb-0 '>
-          <Skins />
+          <Colors />
           <Head />
           <Body />
           <Face />

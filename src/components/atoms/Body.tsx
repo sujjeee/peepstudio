@@ -40,7 +40,7 @@ const Body: React.FC<BodyProps> = ({ }) => {
             setShowRadioGroup(true)
         };
         getBodiesArray();
-    }, []);
+    }, [data.refresh]);
 
     const handleAllPeeps = async () => {
         const fetchedHeads = await getBodies();
@@ -62,6 +62,7 @@ const Body: React.FC<BodyProps> = ({ }) => {
             <CardContent className="grid gap-4">
                 {showRadioGroup && (
                     <RadioGroup
+                        key={data.head}
                         defaultValue={data.body}
                         className="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-9 gap-2 mx-auto">
                         {bodies.map((body, index) => (

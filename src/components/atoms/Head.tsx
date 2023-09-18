@@ -30,7 +30,6 @@ const Head: React.FC<HeadProps> = ({ }) => {
     const [showRadioGroup, setShowRadioGroup] = React.useState(false);
 
     React.useEffect(() => {
-
         const getHeadArray = async () => {
             const fetchedHeads = await getHeads();
             const slicedHeads = fetchedHeads.slice(0, 27);
@@ -42,7 +41,7 @@ const Head: React.FC<HeadProps> = ({ }) => {
             setShowRadioGroup(true);
         };
         getHeadArray();
-    }, []);
+    }, [data.refresh]);
 
     const handleAllPeeps = async () => {
         const fetchedHeads = await getHeads();
@@ -65,6 +64,7 @@ const Head: React.FC<HeadProps> = ({ }) => {
             <CardContent className="grid gap-4">
                 {showRadioGroup && (
                     <RadioGroup
+                        key={data.head}
                         defaultValue={data.head}
                         className="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-9 gap-2 mx-auto">
                         {heads.map((head, index) => (

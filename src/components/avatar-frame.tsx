@@ -2,7 +2,7 @@
 
 import { usePeep } from '@/lib/context/PeepContext';
 import React from 'react'
-import { getBody } from '@/components/atoms/body/index'
+import { getBodies } from '@/components/atoms/body/index'
 import { getFaces } from '@/components/atoms/face/index'
 import { getBeards } from '@/components/atoms/beard/index';
 import { getHeads } from '@/components/atoms/head/index';
@@ -17,7 +17,7 @@ const AvatarFrame: React.FC<AvatarFrameProps> = ({ }) => {
     React.useEffect(() => {
         const getComponents = async () => {
             const fetchedHead = await getHeads();
-            const fetchedBodies = await getBody();
+            const fetchedBodies = await getBodies();
             const fetchedFaces = await getFaces();
             const fetchedBeard = await getBeards();
 
@@ -28,7 +28,6 @@ const AvatarFrame: React.FC<AvatarFrameProps> = ({ }) => {
         getComponents();
     }, []);
 
-    // console.log("all data?", allData)
 
 
     const selectedHeadOption = data && allData

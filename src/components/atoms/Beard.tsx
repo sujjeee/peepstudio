@@ -41,7 +41,7 @@ const Beards: React.FC<BeardsProps> = ({ }) => {
         };
 
         getBeardsArray();
-    }, []);
+    }, [data.refresh]);
 
     return (
         <Card className='w-full'>
@@ -56,6 +56,7 @@ const Beards: React.FC<BeardsProps> = ({ }) => {
             <CardContent className="grid gap-4">
                 {showRadioGroup && (
                     <RadioGroup
+                        key={data.head}
                         defaultValue={data.beard}
                         className="grid sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-9 gap-2 mx-auto">
                         {beards.map((beard, index) => (

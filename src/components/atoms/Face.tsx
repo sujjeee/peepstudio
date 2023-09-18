@@ -40,7 +40,7 @@ const Face: React.FC<FaceProps> = ({ }) => {
             setShowRadioGroup(true)
         };
         getFacesArray();
-    }, []);
+    }, [data.refresh]);
 
     const handleAllPeeps = async () => {
         const fetchedHeads = await getFaces();
@@ -63,6 +63,7 @@ const Face: React.FC<FaceProps> = ({ }) => {
             <CardContent className="grid gap-4">
                 {showRadioGroup && (
                     <RadioGroup
+                        key={data.head}
                         defaultValue={data.face}
                         className="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-9 gap-2 mx-auto">
                         {faces.map((face, index) => (
