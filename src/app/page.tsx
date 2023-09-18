@@ -6,6 +6,7 @@ import Body from '@/components/atoms/Body'
 import TestFrame from '@/test/TestFrame'
 import Colors from '@/components/atoms/Colors'
 import RandomData from '@/components/buttons/RandomData'
+import Accessory from '@/components/atoms/Accessory'
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
           <Body />
           <Face />
           <Beard />
+          <Accessory />
         </div>
       </section>
     </main>

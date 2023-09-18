@@ -95,3 +95,7 @@ body::-webkit-scrollbar {
     scrollbar-width: none;
   }
 }
+
+[type="color"] {
+  cursor: pointer;
+}

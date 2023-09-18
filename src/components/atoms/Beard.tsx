@@ -47,7 +47,7 @@ const Beards: React.FC<BeardsProps> = ({ }) => {
         <Card className='w-full'>
             <CardHeader className="space-y-1">
                 <CardTitle className="text-2xl flex justify-between items-center">
-                    Body
+                    Beards
                 </CardTitle>
                 <CardDescription>
                     Enter your additional link details here.
@@ -58,7 +58,7 @@ const Beards: React.FC<BeardsProps> = ({ }) => {
                     <RadioGroup
                         key={data.head}
                         defaultValue={data.beard}
-                        className="grid sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-9 gap-2 mx-auto">
+                        className="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-9 gap-2 mx-auto">
                         {beards.map((beard, index) => (
                             <div key={index}>
                                 <RadioGroupItem

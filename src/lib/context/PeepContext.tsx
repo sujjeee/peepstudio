@@ -6,6 +6,7 @@ interface PeepData {
     skinColor: string;
     hairColor: string;
     beardColor: string;
+    frameColor: string;
     head: string;
     body: string;
     face: string;
@@ -32,6 +33,7 @@ export const PeepContextProvider = ({ children }: { children: React.ReactNode })
         skinColor: "#D08B5B",
         hairColor: '#000000',
         beardColor: '#000000',
+        frameColor: '#F3E8FF',
         head: "#HAf01",
         body: "#Ja12",
         face: "#Ca03",

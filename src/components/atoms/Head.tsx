@@ -28,12 +28,13 @@ const Head: React.FC<HeadProps> = ({ }) => {
     const { setPeepData, data } = usePeep()
     const [heads, setHeads] = React.useState<ComponentData[]>([]);
     const [showRadioGroup, setShowRadioGroup] = React.useState(false);
+    const [showAll, setShowAll] = React.useState(false);
 
     React.useEffect(() => {
         const getHeadArray = async () => {
             const fetchedHeads = await getHeads();
-            const slicedHeads = fetchedHeads.slice(0, 27);
-            setHeads(slicedHeads);
+            // const slicedHeads = fetchedHeads.slice(0, 27);
+            setHeads(fetchedHeads);
 
             const randomIndex = Math.floor(Math.random() * fetchedHeads.length);
             const randomHead = fetchedHeads[randomIndex];
@@ -43,19 +44,18 @@ const Head: React.FC<HeadProps> = ({ }) => {
         getHeadArray();
     }, [data.refresh]);
 
-    const handleAllPeeps = async () => {
-        const fetchedHeads = await getHeads();
-        setHeads(fetchedHeads)
-    };
-
     return (
         <Card className='w-full'>
             <CardHeader className="space-y-1">
                 <CardTitle className="text-2xl flex justify-between items-center">
-                    head
-                    <Button variant={'ghost'} onClick={handleAllPeeps} className='text-blue-700'>
-                        View all &rarr;
-                    </Button>
+                    Heads
+                    <button
+                        onClick={() => {
+                            setShowAll(!showAll)
+                        }}
+                        className='text-blue-700 text-sm font-medium hover:text-blue-900'>
+                        {showAll ? 'Show less' : 'View all'}
+                    </button>
                 </CardTitle>
                 <CardDescription>
                     Enter your additional link details here.
@@ -68,31 +68,33 @@ const Head: React.FC<HeadProps> = ({ }) => {
                         defaultValue={data.head}
                         className="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-9 gap-2 mx-auto">
                         {heads.map((head, index) => (
-                            <div key={index}>
-                                <RadioGroupItem
-                                    value={head.code}
-                                    id={head.code}
-                                    className="peer sr-only"
-                                    onClick={() => {
-                                        setPeepData("head", head.code);
-                                    }} />
-                                <Label
-                                    htmlFor={head.code}
-                                    className="w-full h-full flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        overflow="hidden"
-                                        viewBox="0 0 700 700"
-                                        style={{ width: "100%", height: "100%" }}
-                                        fill="none"
+                            (showAll || index < 27) ? (
+                                <div key={index}>
+                                    <RadioGroupItem
+                                        value={head.code}
+                                        id={head.code}
+                                        className="peer sr-only"
+                                        onClick={() => {
+                                            setPeepData("head", head.code);
+                                        }} />
+                                    <Label
+                                        htmlFor={head.code}
+                                        className="w-full h-full flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                                     >
-                                        <g transform="translate(120, 100)" >
-                                            {head.component}
-                                        </g>
-                                    </svg>
-                                </Label>
-                            </div>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            overflow="hidden"
+                                            viewBox="0 0 700 700"
+                                            style={{ width: "100%", height: "100%" }}
+                                            fill="none"
+                                        >
+                                            <g transform="translate(120, 100)">
+                                                {head.component}
+                                            </g>
+                                        </svg>
+                                    </Label>
+                                </div>
+                            ) : null
                         ))}
                     </RadioGroup>
                 )}

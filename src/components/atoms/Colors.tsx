@@ -16,6 +16,7 @@ import {
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group'
 import { Label } from '../ui/label'
 import { usePeep } from '@/lib/context/PeepContext'
+import { Input } from '../ui/input'
 
 interface SkinsProps {
 
@@ -75,18 +76,18 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
             {showRadioGroup && (
                 <CardContent className="grid gap-4 p-0">
                     <Tabs defaultValue="skin" >
-                        <TabsList className="grid w-full grid-cols-3">
+                        <TabsList className="grid w-full grid-cols-4">
                             <TabsTrigger value="skin">Skin</TabsTrigger>
                             <TabsTrigger value="hair">Hair</TabsTrigger>
                             <TabsTrigger value="beard">Beard</TabsTrigger>
+                            <TabsTrigger value="frame">Frame</TabsTrigger>
                         </TabsList>
                         <TabsContent value="skin">
                             <RadioGroup
-                                key={data.head}
+                                key={data.face}
                                 defaultValue={data.skinColor}
                                 className="grid grid-flow-col gap-2">
                                 {skins.map((color, index) => {
-                                    console.log("color text", data.skinColor, "and", color)
                                     return (
                                         <div key={index}>
                                             <RadioGroupItem
@@ -172,6 +173,34 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
                                         </div>
                                     ))}
                                 </RadioGroup>
+                            </CardContent>
+                        </TabsContent>
+                        <TabsContent value="frame">
+                            <CardContent className="space-y-2 p-0">
+                                {/* <RadioGroup
+                                        
+                                    defaultValue='frame'
+                                    className="grid grid-flow-col gap-2">
+                                    <RadioGroupItem
+                                        value='frame'
+                                        id='frame'
+                                        className="peer sr-only" />
+                                    <Label
+                                        htmlFor='frame'
+                                        className="p-0.5 w-full h-14 flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                                    >
+                                    </Label>
+                                </RadioGroup> */}
+                                <Input
+                                    type="color"
+                                    placeholder="frame backgound color"
+                                    value={data.frameColor}
+                                    onChange={(e) => {
+                                        console.log("evernt", e.target.value)
+                                        setPeepData('frameColor', e.target.value)
+                                    }}
+                                    className='p-1 rounded-md h-14 overflow-hidden'
+                                />
                             </CardContent>
                         </TabsContent>
                     </Tabs>
