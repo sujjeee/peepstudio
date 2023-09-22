@@ -1,6 +1,8 @@
 "use client"
+
 import { usePeep } from '@/lib/context/PeepContext'
 import React from 'react'
+
 export default function HatBeanie() {
     const { data } = usePeep()
     return (

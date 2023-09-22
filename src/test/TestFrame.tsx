@@ -1,18 +1,18 @@
 "use client"
 
-import { usePeep } from '@/lib/context/PeepContext';
 import React from 'react'
+import { usePeep } from '@/lib/context/PeepContext';
 import { getBodies } from '@/components/atoms/body/index'
 import { getFaces } from '@/components/atoms/face/index'
 import { getBeards } from '@/components/atoms/beard/index';
 import { getHeads } from '@/components/atoms/head/index';
 import { getAccessories } from '@/components/atoms/accessory/index';
-import RandomData from '@/components/buttons/RandomData';
 import { getMasks } from '@/components/atoms/mask/index';
-
+import RandomData from '@/components/buttons/RandomData';
+import { Settings } from 'lucide-react';
 
 export default function TestFrame() {
-    const { data } = usePeep();
+    const { data, edit } = usePeep();
     const [allData, setAllData] = React.useState<any>();
 
     React.useEffect(() => {
@@ -61,12 +61,11 @@ export default function TestFrame() {
         ? allData.find((option: any) => option.code === data.mask)
         : null;
     const selectedMaskComponent = selectedMaskOption ? selectedMaskOption.component : null;
-    console.log("selwcted mask", selectedMaskComponent)
 
     return (
         <div className='flex flex-col w-full sm:w-96 gap-4'>
             <div id="avatar-parent" className="w-full sm:w-96 rounded-md overflow-hidden" style={{ background: data.frameColor }}>
-                <div id="avatar-wrapper" className="h-full w-full">
+                <div id="avatar-wrapper" className="group relative h-full w-full">
                     <svg viewBox="0 0 1400 1400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                         <g id="person" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" transform="translate(100, 100)">
                             <g id="body" transform="translate(147.000000, 575.000000)">
@@ -91,6 +90,13 @@ export default function TestFrame() {
                             </g>
                         </g>
                     </svg>
+                    <div className='absolute top-3 right-3 backdrop-blur '>
+                        <div
+                            onClick={edit}
+                            className='shrink-0 p-2 h-8 w-8 text-center backdrop-blur-3xl rounded-full cursor-pointer'>
+                            <Settings className='h-4 w-4 text-accent-foreground hover:text-black hidden group-hover:flex ' />
+                        </div>
+                    </div>
                 </div>
             </div>
             <RandomData />
