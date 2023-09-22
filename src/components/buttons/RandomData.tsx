@@ -3,16 +3,39 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Shuffle } from 'lucide-react'
 import { usePeep } from '@/lib/context/PeepContext'
+import html2canvas from 'html2canvas';
 
 export default function RandomData() {
     const { refreshData } = usePeep()
+
+    const handleDownloadImage = () => {
+        const elementToCapture = document.getElementById('avatar-parent');
+
+        if (elementToCapture) {
+            const scale = 10; // Adjust the scale to achieve the desired resolution (e.g., 8 times)
+
+            html2canvas(elementToCapture, {
+                scale: scale, // Set the scale to capture at a higher resolution
+            }).then((canvas) => {
+                // Convert canvas to image data URL
+                const imageDataUrl = canvas.toDataURL('image/png');
+
+                // Create a link element to trigger the download
+                const downloadLink = document.createElement('a');
+                downloadLink.href = imageDataUrl;
+                downloadLink.download = 'image.png';
+                downloadLink.click();
+            });
+        }
+    };
+
     return (
         <div className='w-full flex gap-2'>
             <Button className='w-full ' onClick={refreshData}>
                 <Shuffle className='mr-2 h-4 w-4' />
                 Random
             </Button>
-            <Button className='w-full' onClick={refreshData}>
+            <Button className='w-full' onClick={handleDownloadImage}>
                 <svg
                     className='mr-2 h-4 w-4'
                     xmlns="http://www.w3.org/2000/svg"
