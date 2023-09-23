@@ -37,7 +37,7 @@ export const PeepContextProvider = ({ children }: { children: React.ReactNode })
         hairColor: '#000000',
         beardColor: '#000000',
         frameColor: '#F3E8FF',
-        head: "#HAf01",
+        head: "#HBu09",
         body: "#Ja12",
         face: "#Ca03",
         beard: "",

@@ -12,7 +12,6 @@ import { RadioGroup, RadioGroupItem } from '../ui/radio-group'
 import { Label } from '../ui/label'
 import { getHeads } from '@/components/atoms/head/index'
 import { usePeep } from '@/lib/context/PeepContext'
-import { Button } from '../ui/button'
 
 interface HeadProps { }
 
