@@ -12,16 +12,9 @@ import { RadioGroup, RadioGroupItem } from '../ui/radio-group'
 import { Label } from '../ui/label'
 import { getFaces } from '@/components/atoms/face/index'
 import { usePeep } from '@/lib/context/PeepContext'
-import { Button } from '../ui/button'
+
 
 interface FaceProps { }
-
-type ComponentData = {
-    code: string;
-    component: JSX.Element;
-    name: string;
-};
-
 
 const Face: React.FC<FaceProps> = ({ }) => {
     const { data, setPeepData } = usePeep()

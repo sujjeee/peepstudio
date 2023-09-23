@@ -1,33 +1,14 @@
 import { createContext, useContext, useState } from "react";
 
-// Define the shape of your Peep data
-interface PeepData {
-    edit: boolean
-    refresh: boolean
-    skinColor: string;
-    hairColor: string;
-    beardColor: string;
-    frameColor: string;
-    head: string;
-    body: string;
-    face: string;
-    beard: string;
-    mask: string;
-    accessory: string;
-}
-
-// Define a type for your context
 interface PeepContextType {
     data: PeepData;
     setPeepData: (name: keyof PeepData, value: string) => void;
     refreshData: () => void;
-    edit: () => void;
+    toggleEdit: () => void;
 }
 
-// Create the PeepContext
 const PeepContext = createContext<PeepContextType | undefined>(undefined);
 
-// Create the PeepContextProvider component
 export const PeepContextProvider = ({ children }: { children: React.ReactNode }) => {
 
     const [data, setData] = useState<PeepData>({
@@ -58,7 +39,7 @@ export const PeepContextProvider = ({ children }: { children: React.ReactNode })
             refresh: !prevState.refresh,
         }));
     };
-    const edit = () => {
+    const toggleEdit = () => {
         setData((prevState) => ({
             ...prevState,
             edit: !prevState.edit,
@@ -69,7 +50,7 @@ export const PeepContextProvider = ({ children }: { children: React.ReactNode })
         data,
         setPeepData,
         refreshData,
-        edit,
+        toggleEdit,
     };
 
     return (

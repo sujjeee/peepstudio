@@ -15,14 +15,6 @@ import { usePeep } from '@/lib/context/PeepContext'
 
 interface HeadProps { }
 
-
-type ComponentData = {
-    code: string;
-    component: JSX.Element;
-    name: string;
-};
-
-
 const Head: React.FC<HeadProps> = ({ }) => {
     const { setPeepData, data } = usePeep()
     const [heads, setHeads] = React.useState<ComponentData[]>([]);

@@ -1,7 +1,6 @@
 "use client"
 
 import Face from '@/test/component/Face'
-import AvatarFrame from '@/components/avatar-frame'
 import Body from '@/test/component/Body'
 import Beard from '@/test/component/Beard'
 import Accessory from '@/test/component/Accessory'
@@ -27,59 +26,63 @@ import { getBeards } from '@/components/atoms/beard/index'
 import { getAccessories } from '@/components/atoms/accessory/index'
 import { getMasks } from '@/components/atoms/mask'
 
-type ComponentData = {
-    code: string;
-    component: JSX.Element;
-    name: string;
-};
-
 export default function Home() {
 
     const { data, setPeepData } = usePeep()
-    const [bodies, setBodies] = React.useState<ComponentData[]>([]);
-    const [heads, setHeads] = React.useState<ComponentData[]>([]);
-    const [faces, setFaces] = React.useState<ComponentData[]>([]);
-    const [beards, setBeards] = React.useState<ComponentData[]>([]);
-    const [glasses, setGlasses] = React.useState<ComponentData[]>([]);
-    const [masks, setMasks] = React.useState<ComponentData[]>([]);
-    const [skinColor, setSkinColor] = React.useState<ComponentData[]>([]);
+
+    const [componentData, setComponentData] = React.useState<{
+        bodies: ComponentData[];
+        heads: ComponentData[];
+        faces: ComponentData[];
+        beards: ComponentData[];
+        glasses: ComponentData[];
+        masks: ComponentData[];
+    }>({
+        bodies: [],
+        heads: [],
+        faces: [],
+        beards: [],
+        glasses: [],
+        masks: [],
+    });
 
     React.useEffect(() => {
         const getBodiesArray = async () => {
-            const fetchedBodies = await getBodies();
-            const fetchedHeads = await getHeads();
-            const fetchedFaces = await getFaces();
-            const fetchedBeards = await getBeards();
-            const fetchedAccessories = await getAccessories();
-            const fetchedMasks = await getMasks();
-            setHeads(fetchedHeads);
-            setBodies(fetchedBodies);
-            setFaces(fetchedFaces);
-            setBeards(fetchedBeards);
-            setGlasses(fetchedAccessories);
-            setMasks(fetchedMasks);
+            const [fetchedBodies, fetchedHeads, fetchedFaces, fetchedBeards, fetchedAccessories, fetchedMasks] = await Promise.all([
+                getBodies(),
+                getHeads(),
+                getFaces(),
+                getBeards(),
+                getAccessories(),
+                getMasks(),
+            ]);
 
-            const randomHeadIndex = Math.floor(Math.random() * fetchedBodies.length);
-            const randomBodyIndex = Math.floor(Math.random() * fetchedHeads.length);
-            const randomFaceIndex = Math.floor(Math.random() * fetchedFaces.length);
-            const randomBeardIndex = Math.floor(Math.random() * fetchedBeards.length);
-            const randomGlassesIndex = Math.floor(Math.random() * fetchedAccessories.length);
-            const randomSkinColorIndex = Math.floor(Math.random() * skins.length);
-            const randomBody = fetchedBodies[randomHeadIndex];
-            const randomHead = fetchedHeads[randomBodyIndex];
-            const randomFace = fetchedFaces[randomFaceIndex];
-            const randomBeard = fetchedBeards[randomBeardIndex];
-            const randomGlasses = fetchedAccessories[randomGlassesIndex];
-            const randomSkinColor = skins[randomSkinColorIndex];
-            setPeepData("body", randomBody.code);
-            setPeepData("head", randomHead.code);
-            setPeepData("face", randomFace.code);
-            setPeepData("beard", randomBeard.code);
-            setPeepData("accessory", randomGlasses.code);
-            setPeepData("skinColor", randomSkinColor);
+            setComponentData({
+                bodies: fetchedBodies,
+                heads: fetchedHeads,
+                faces: fetchedFaces,
+                beards: fetchedBeards,
+                glasses: fetchedAccessories,
+                masks: fetchedMasks,
+            });
+
+            const getRandomIndex = (componentArray: ComponentData[]) => {
+                return Math.floor(Math.random() * componentArray.length);
+            };
+
+            const fetchedArrays = [fetchedBodies, fetchedHeads, fetchedFaces, fetchedBeards, fetchedAccessories];
+            const keys = ["body", "head", "face", "beard", "accessory"];
+            for (let i = 0; i < keys.length; i++) {
+                const key = keys[i];
+                const fetchedArray = fetchedArrays[i];
+                const randomElement = fetchedArray[getRandomIndex(fetchedArray)];
+                setPeepData(key as keyof PeepData, randomElement.code);
+            }
+
         };
         getBodiesArray();
     }, [data.refresh]);
+
     return (
         <main className="relative grid lg:grid-cols-3 h-screen px-2 lg:px-0 md:container">
             <section className="flex justify-end items-start py-6">
@@ -88,11 +91,11 @@ export default function Home() {
             <section className="lg:col-span-2 flex flex-col items-center py-6 lg:px-20 gap-6 h-screen">
                 <div className='overflow-y-auto w-full hide_scrollbar flex flex-col gap-5 pb-20 lg:pb-0 '>
                     <div className='hidden'>
-                        <Head heads={heads} />
-                        <Body bodies={bodies} />
-                        <Face faces={faces} />
-                        <Beard beards={beards} />
-                        <Accessory masks={masks} glasses={glasses} />
+                        <Head heads={componentData.heads} />
+                        <Body bodies={componentData.bodies} />
+                        <Face faces={componentData.faces} />
+                        <Beard beards={componentData.beards} />
+                        <Accessory masks={componentData.masks} glasses={componentData.glasses} />
                         <Color />
                     </div>
                     <Card className='w-full rounded-md p-6'>
@@ -110,19 +113,19 @@ export default function Home() {
                                     <Color />
                                 </TabsContent>
                                 <TabsContent value="head">
-                                    <Head heads={heads} />
+                                    <Head heads={componentData.heads} />
                                 </TabsContent>
                                 <TabsContent value="body">
-                                    <Body bodies={bodies} />
+                                    <Body bodies={componentData.bodies} />
                                 </TabsContent>
                                 <TabsContent value="face">
-                                    <Face faces={faces} />
+                                    <Face faces={componentData.faces} />
                                 </TabsContent>
                                 <TabsContent value="beard">
-                                    <Beard beards={beards} />
+                                    <Beard beards={componentData.beards} />
                                 </TabsContent>
                                 <TabsContent value="accessory">
-                                    <Accessory masks={masks} glasses={glasses} />
+                                    <Accessory masks={componentData.masks} glasses={componentData.glasses} />
                                 </TabsContent>
                             </Tabs>
 
@@ -132,24 +135,4 @@ export default function Home() {
             </section>
         </main>
     )
-
-    //   <main className={cn("relative grid h-screen px-2 lg:px-0 md:container",
-    //       {
-    //         "lg:grid-cols-3": edit
-    //       }
-    //     )}>
-    //       <section className='flex justify-center items-center py-6 '>
-    //         <TestFrame />
-    //       </section>
-    //       <section className='lg:col-span-2 flex flex-col items-center py-6 lg:px-20 gap-6 h-screen '>
-    //         <div className='overflow-y-auto w-full hide_scrollbar flex flex-col gap-5 pb-20 lg:pb-0 '>
-    //           <Colors />
-    //           <Head />
-    //           <Body />
-    //           <Face />
-    //           <Beard />
-    //           <Accessory />
-    //         </div>
-    //       </section>
-    //     </main>
 }

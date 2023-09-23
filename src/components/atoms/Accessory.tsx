@@ -15,16 +15,7 @@ import { usePeep } from '@/lib/context/PeepContext'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
 import { getMasks } from '@/components/atoms/mask/index'
 
-interface AccessoryProps {
-
-}
-
-type ComponentData = {
-    code: string;
-    component: JSX.Element;
-    name: string;
-};
-
+interface AccessoryProps { }
 
 const Accessory: React.FC<AccessoryProps> = ({ }) => {
     const { data, setPeepData } = usePeep()

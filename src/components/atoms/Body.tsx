@@ -12,15 +12,8 @@ import { RadioGroup, RadioGroupItem } from '../ui/radio-group'
 import { Label } from '../ui/label'
 import { getBodies } from '@/components/atoms/body/index'
 import { usePeep } from '@/lib/context/PeepContext'
-import { Button } from '../ui/button'
 
 interface BodyProps { }
-
-type ComponentData = {
-    code: string;
-    component: JSX.Element;
-    name: string;
-};
 
 
 const Body: React.FC<BodyProps> = ({ }) => {
