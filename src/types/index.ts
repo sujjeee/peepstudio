@@ -23,12 +23,10 @@ interface PeepData {
 }
 
 interface AllComponentData {
-    // components: {
     bodies: ComponentData[];
     heads: ComponentData[];
     faces: ComponentData[];
     beards: ComponentData[];
     glasses: ComponentData[];
     masks: ComponentData[];
-    // };
 }

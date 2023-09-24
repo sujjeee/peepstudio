@@ -9,10 +9,12 @@ import { getHeads } from '@/components/atoms/head/index';
 import { getAccessories } from '@/components/atoms/accessory/index';
 import { getMasks } from '@/components/atoms/mask/index';
 import RandomData from '@/components/buttons/RandomData';
+import { Loader } from 'lucide-react';
 
 export default function AvatarFrame() {
     const { data, } = usePeep();
     const [allData, setAllData] = React.useState<ComponentData[]>([]);
+    const [isLoading, setIsLoading] = React.useState(true);
 
     const getComponents = React.useCallback(async () => {
         const [
@@ -39,6 +41,7 @@ export default function AvatarFrame() {
             ...fetchedMasks,
         ];
         setAllData(allFetchedData);
+        setIsLoading(false);
     }, [])
 
     React.useEffect(() => {
@@ -72,7 +75,7 @@ export default function AvatarFrame() {
                 className="w-full sm:w-96 rounded-md overflow-hidden shadow-sm" >
                 <div
                     id="avatar-wrapper"
-                    className=" relative h-full w-full"
+                    className="relative h-full w-full"
                     style={{ background: data.frameColor }}>
                     <svg
                         viewBox="0 0 1400 1400"
@@ -81,7 +84,7 @@ export default function AvatarFrame() {
                         xmlnsXlink="http://www.w3.org/1999/xlink">
                         <g
                             id="position"
-                            transform={`translate(${data.x_axis}, ${data.y_axis}) scale(${data.scale} rototate)`} >
+                            transform={`translate(${data.x_axis}, ${data.y_axis}) scale(${data.scale})`} >
                             <g
                                 id="person"
                                 stroke="none"
@@ -127,6 +130,11 @@ export default function AvatarFrame() {
                             </g>
                         </g>
                     </svg>
+                    {isLoading &&
+                        <div className='absolute top-0 left-0 flex justify-center items-center w-full h-full '>
+                            <Loader className='animate-spin h-12 w-12' />
+                        </div>
+                    }
                 </div>
             </div>
             <RandomData />

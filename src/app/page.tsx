@@ -1,7 +1,6 @@
 "use client"
 
 import React from 'react'
-
 import { usePeep } from '@/lib/context/PeepContext'
 import { getBodies } from '@/components/atoms/body/index'
 import { getHeads } from '@/components/atoms/head/index'
@@ -111,7 +110,6 @@ export default function Home() {
               >
                 Sujjeee
               </a>
-              .
             </div>
           </div>
         </div>
