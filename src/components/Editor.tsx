@@ -22,14 +22,11 @@ const Editor: FC<EditorProps> = ({ components }) => {
             {
                 isDesktop
                     ? (
-
                         <div
+                            onClick={toggleEdit}
                             className='shrink-0 p-2 h-8 w-8 text-center backdrop-blur-3xl rounded-full cursor-pointer z-50'>
                             <Settings className='h-4 w-4 text-gray-800 hover:text-gray-600  ' />
                         </div>
-
-
-
                     ) : (
                         <>
 
