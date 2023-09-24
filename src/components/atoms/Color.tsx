@@ -180,9 +180,9 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
                 </Card>
                 <Card >
                     <CardHeader>
-                        <CardTitle>Wallpaper</CardTitle>
+                        <CardTitle>Position</CardTitle>
                     </CardHeader>
-                    <div className='grid grid-cols-2 '>
+                    <div className='grid sm:grid-cols-2 '>
                         <div className='flex flex-col w-full'>
                             <CardHeader>
                                 <CardTitle>Resize X</CardTitle>
@@ -232,7 +232,6 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
                                 />
                             </CardContent>
                         </div>
-
                     </div>
                 </Card>
             </div>
