@@ -1,32 +1,27 @@
-"use client"
-
-import Face from '@/test/component/Face'
-import Body from '@/test/component/Body'
-import Beard from '@/test/component/Beard'
-import Accessory from '@/test/component/Accessory'
-import Color from '@/test/component/Color'
-import {
-    Card,
-    CardContent,
-} from '@/components/ui/card'
+import React from 'react'
 import {
     Tabs,
     TabsContent,
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-import Head from '@/test/component/Head'
-import React from 'react'
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
+import {
+    ScrollArea,
+    ScrollBar
+} from '@/components/ui/scroll-area'
+import Body from '@/components/atoms/Body'
+import Beard from '@/components/atoms/Beard'
+import Accessory from '@/components/atoms/Accessory'
+import Color from '@/components/atoms/Color'
+import Head from '@/components/atoms/Head'
+import Face from '@/components/atoms/Face'
 
 interface EditAvatarProps {
-    components: any
+    data: AllComponentData
 }
-
-const EditAvatar: React.FC<EditAvatarProps> = ({ components }) => {
-
+const EditAvatar: React.FC<EditAvatarProps> = ({ data }) => {
+    const { bodies, heads, faces, beards, glasses, masks } = data;
     return (
-
         <Tabs defaultValue="head" >
             <ScrollArea className='min-w-[400]'>
                 <TabsList className="grid lg:w-full min-w-[450px] grid-cols-6 mb-4">
@@ -43,22 +38,21 @@ const EditAvatar: React.FC<EditAvatarProps> = ({ components }) => {
                 <Color />
             </TabsContent>
             <TabsContent value="head">
-                <Head heads={components.heads} />
+                <Head heads={heads} />
             </TabsContent>
             <TabsContent value="body">
-                <Body bodies={components.bodies} />
+                <Body bodies={bodies} />
             </TabsContent>
             <TabsContent value="face">
-                <Face faces={components.faces} />
+                <Face faces={faces} />
             </TabsContent>
             <TabsContent value="beard">
-                <Beard beards={components.beards} />
+                <Beard beards={beards} />
             </TabsContent>
             <TabsContent value="accessory">
-                <Accessory masks={components.masks} glasses={components.glasses} />
+                <Accessory masks={masks} glasses={glasses} />
             </TabsContent>
         </Tabs>
-
     )
 }
 export default EditAvatar

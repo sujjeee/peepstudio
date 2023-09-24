@@ -9,10 +9,9 @@ import { getHeads } from '@/components/atoms/head/index';
 import { getAccessories } from '@/components/atoms/accessory/index';
 import { getMasks } from '@/components/atoms/mask/index';
 import RandomData from '@/components/buttons/RandomData';
-import { Settings } from 'lucide-react';
 
-export default function TestFrame() {
-    const { data, toggleEdit } = usePeep();
+export default function AvatarFrame() {
+    const { data, } = usePeep();
     const [allData, setAllData] = React.useState<any>();
 
     React.useEffect(() => {

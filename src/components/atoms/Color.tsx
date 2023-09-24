@@ -14,9 +14,8 @@ import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Slider } from '@/components/ui/slider'
 
-interface SkinsProps {
+interface SkinsProps { }
 
-}
 export const skins = [
     "#FFDBB4",
     "#EDB98A",
@@ -51,6 +50,7 @@ const beards = [
     "#4A312C",
     "#C93305"
 ];
+
 const Colors: React.FC<SkinsProps> = ({ }) => {
     const { data, setPeepData } = usePeep()
     return (
@@ -65,7 +65,7 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
                             key={data.skinColor}
                             defaultValue={data.skinColor}
                             className="grid gap-2.5 grid-cols-[repeat(auto-fill,minmax(100px,1fr))]">
-                            {skins.map((color: any, index: any) => {
+                            {skins.map((color, index) => {
                                 return (
                                     <div key={index}>
                                         <RadioGroupItem
@@ -103,7 +103,7 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
                             key={data.hairColor}
                             defaultValue={data.hairColor}
                             className="grid gap-2.5 grid-cols-[repeat(auto-fill,minmax(55px,1fr))]">
-                            {hairs.map((color: any, index: any) => (
+                            {hairs.map((color, index) => (
                                 <div key={index}>
                                     <RadioGroupItem value={color} id={color} className="peer sr-only" />
                                     <Label
@@ -136,7 +136,7 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
                             key={data.beardColor}
                             defaultValue={data.beardColor}
                             className="grid gap-2.5 grid-cols-[repeat(auto-fill,minmax(55px,1fr))]">
-                            {beards.map((color: any, index: any) => (
+                            {beards.map((color, index) => (
                                 <div key={index}>
                                     <RadioGroupItem
                                         value={color}
@@ -194,7 +194,6 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
                                     step={2}
                                     className="w-full"
                                     onValueChange={(newValue: number[]) => {
-                                        console.log("chmaging value", data.x_axis)
                                         setPeepData("x_axis", newValue[0])
                                     }}
                                 />
@@ -211,7 +210,6 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
                                     step={2}
                                     className="w-full"
                                     onValueChange={(newValue: number[]) => {
-                                        console.log("chmaging value", data.y_axis)
                                         setPeepData("y_axis", newValue[0])
                                     }}
                                 />
@@ -229,7 +227,6 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
                                     step={0.1}
                                     className="w-full"
                                     onValueChange={(newValue: number[]) => {
-                                        console.log("chmaging value", data.scale)
                                         setPeepData("scale", newValue[0])
                                     }}
                                 />

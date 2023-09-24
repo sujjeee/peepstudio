@@ -21,3 +21,14 @@ interface PeepData {
     mask: string;
     accessory: string;
 }
+
+interface AllComponentData {
+    // components: {
+    bodies: ComponentData[];
+    heads: ComponentData[];
+    faces: ComponentData[];
+    beards: ComponentData[];
+    glasses: ComponentData[];
+    masks: ComponentData[];
+    // };
+}

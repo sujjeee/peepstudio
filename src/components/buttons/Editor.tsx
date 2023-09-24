@@ -4,19 +4,17 @@ import React, { FC } from 'react'
 import useWindowSize from "@/hooks/useWindowSize";
 import { Drawer } from "vaul"
 import { DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
-import EditAvtar from '@/test/EditAvatar'
 import { Settings } from "lucide-react";
 import { usePeep } from "@/lib/context/PeepContext";
-import { Button } from './ui/button';
+import EditAvatar from '../EditAvatar';
 
 interface EditorProps {
-    components: any
+    data: AllComponentData
 }
 
-const Editor: FC<EditorProps> = ({ components }) => {
+const Editor: FC<EditorProps> = ({ data }) => {
     const { toggleEdit } = usePeep();
     const { isDesktop } = useWindowSize();
-
     return (
         <>
             {
@@ -29,7 +27,6 @@ const Editor: FC<EditorProps> = ({ components }) => {
                         </div>
                     ) : (
                         <>
-
                             <Drawer.Root>
                                 <DrawerTrigger asChild>
                                     <div
@@ -39,11 +36,10 @@ const Editor: FC<EditorProps> = ({ components }) => {
                                 </DrawerTrigger>
                                 <DrawerContent className="h-[60%] pb-2">
                                     <div className='p-4 pt-10'>
-                                        <EditAvtar components={components} />
+                                        <EditAvatar data={data} />
                                     </div>
                                 </DrawerContent>
                             </Drawer.Root >
-
                         </>
                     )
             }
