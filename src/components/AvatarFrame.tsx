@@ -46,6 +46,7 @@ export default function AvatarFrame() {
 
     React.useEffect(() => {
         getComponents();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 

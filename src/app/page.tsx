@@ -78,7 +78,7 @@ export default function Home() {
     const randomIndex = Math.floor(Math.random() * skins.length);
     const randomSkinColor = skins[randomIndex];
     setPeepData("skinColor", randomSkinColor);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.refresh]);
 
   React.useEffect(() => {
