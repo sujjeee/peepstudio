@@ -196,7 +196,7 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
                                     placeholder="frame backgound color"
                                     value={data.frameColor}
                                     onChange={(e) => {
-                                        console.log("evernt", e.target.value)
+
                                         setPeepData('frameColor', e.target.value)
                                     }}
                                     className='p-1 rounded-md h-14 overflow-hidden'

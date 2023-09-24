@@ -12,7 +12,7 @@ import RandomData from '@/components/buttons/RandomData';
 import { Settings } from 'lucide-react';
 
 export default function TestFrame() {
-    const { data, edit } = usePeep();
+    const { data, toggleEdit } = usePeep();
     const [allData, setAllData] = React.useState<any>();
 
     React.useEffect(() => {
@@ -63,7 +63,7 @@ export default function TestFrame() {
     const selectedMaskComponent = selectedMaskOption ? selectedMaskOption.component : null;
 
     return (
-        <div className='flex flex-col w-full sm:w-96 gap-4'>
+        <div className='flex flex-col w-full sm:w-96 gap-4 h-full'>
             <div id="avatar-parent" className="w-full sm:w-96 rounded-md overflow-hidden shadow-sm" style={{ background: data.frameColor }}>
                 <div id="avatar-wrapper" className=" relative h-full w-full">
                     <svg viewBox="0 0 1400 1400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -90,13 +90,6 @@ export default function TestFrame() {
                             </g>
                         </g>
                     </svg>
-                    <div className='absolute top-2 right-2 backdrop-blur '>
-                        <div
-                            onClick={edit}
-                            className='shrink-0 p-2 h-8 w-8 text-center backdrop-blur-3xl rounded-full cursor-pointer'>
-                            <Settings className='h-4 w-4 text-gray-500 hover:text-gray-800  ' />
-                        </div>
-                    </div>
                 </div>
             </div>
             <RandomData />

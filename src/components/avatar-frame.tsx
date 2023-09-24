@@ -45,14 +45,6 @@ const AvatarFrame: React.FC<AvatarFrameProps> = ({ }) => {
         : null;
     const selectedFaceComponent = selectedFaceOption ? selectedFaceOption.component : null;
 
-    // console.log("selectedFaceComponent?", selectedFaceComponent)
-
-    // // Retrieve the selectedOption for beard
-    // const selectedBeardOption = data
-    //     ? allData.find((option: any) => option.code === data.beard)
-    //     : null;
-    // const selectedBeardComponent = selectedBeardOption ? selectedBeardOption.component : null;
-
     return (
         <div id="avatar-parent"
             className="w-full sm:w-96 rounded-3xl bg-purple-100 overflow-hidden">

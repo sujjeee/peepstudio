@@ -1,23 +1,7 @@
 "use client"
 
-import Face from '@/test/component/Face'
-import Body from '@/test/component/Body'
-import Beard from '@/test/component/Beard'
-import Accessory from '@/test/component/Accessory'
-import Color, { skins } from '@/test/component/Color'
 import TestFrame from '@/test/TestFrame'
 import { usePeep } from '@/lib/context/PeepContext'
-import {
-    Card,
-    CardContent,
-} from '@/components/ui/card'
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from "@/components/ui/tabs"
-import Head from '@/test/component/Head'
 import React from 'react'
 import { getBodies } from '@/components/atoms/body/index'
 import { getHeads } from '@/components/atoms/head/index'
@@ -25,6 +9,10 @@ import { getFaces } from '@/components/atoms/face/index'
 import { getBeards } from '@/components/atoms/beard/index'
 import { getAccessories } from '@/components/atoms/accessory/index'
 import { getMasks } from '@/components/atoms/mask'
+import EditAvtar from '@/test/EditAvatar'
+import { Card, CardContent } from '@/components/ui/card'
+import { skins } from '@/test/component/Color'
+import Editor from '@/components/Editor'
 
 export default function Home() {
 
@@ -46,89 +34,73 @@ export default function Home() {
         masks: [],
     });
 
-    React.useEffect(() => {
-        const getBodiesArray = async () => {
-            const [fetchedBodies, fetchedHeads, fetchedFaces, fetchedBeards, fetchedAccessories, fetchedMasks] = await Promise.all([
-                getBodies(),
-                getHeads(),
-                getFaces(),
-                getBeards(),
-                getAccessories(),
-                getMasks(),
-            ]);
+    const getBodiesArray = React.useCallback(async () => {
+        const [fetchedBodies, fetchedHeads, fetchedFaces, fetchedBeards, fetchedAccessories, fetchedMasks] = await Promise.all([
+            getBodies(),
+            getHeads(),
+            getFaces(),
+            getBeards(),
+            getAccessories(),
+            getMasks(),
+        ]);
 
-            setComponentData({
-                bodies: fetchedBodies,
-                heads: fetchedHeads,
-                faces: fetchedFaces,
-                beards: fetchedBeards,
-                glasses: fetchedAccessories,
-                masks: fetchedMasks,
-            });
+        setComponentData({
+            bodies: fetchedBodies,
+            heads: fetchedHeads,
+            faces: fetchedFaces,
+            beards: fetchedBeards,
+            glasses: fetchedAccessories,
+            masks: fetchedMasks,
+        });
 
-            const getRandomIndex = (componentArray: ComponentData[]) => {
-                return Math.floor(Math.random() * componentArray.length);
-            };
-
-            const fetchedArrays = [fetchedBodies, fetchedHeads, fetchedFaces, fetchedBeards, fetchedAccessories];
-            const keys = ["body", "head", "face", "beard", "accessory"];
-            for (let i = 0; i < keys.length; i++) {
-                const key = keys[i];
-                const fetchedArray = fetchedArrays[i];
-                const randomElement = fetchedArray[getRandomIndex(fetchedArray)];
-                setPeepData(key as keyof PeepData, randomElement.code);
-            }
-
+        const getRandomIndex = (componentArray: ComponentData[]) => {
+            return Math.floor(Math.random() * componentArray.length);
         };
-        getBodiesArray();
+
+        const fetchedArrays = [fetchedBodies, fetchedHeads, fetchedFaces, fetchedBeards, fetchedAccessories];
+        const keys = ["body", "head", "face", "beard", "accessory"];
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            const fetchedArray = fetchedArrays[i];
+            const randomElement = fetchedArray[getRandomIndex(fetchedArray)];
+            setPeepData(key as keyof PeepData, randomElement.code);
+        }
+
+        const randomIndex = Math.floor(Math.random() * skins.length);
+        const randomSkinColor = skins[randomIndex];
+        setPeepData("skinColor", randomSkinColor);
+
     }, [data.refresh]);
 
+    React.useEffect(() => {
+        getBodiesArray();
+    }, [getBodiesArray]);
+
     return (
+        // <div className='flex justify-center items-center h-screen p-6 bg-red-600'>
+        //     <div className='relative w-full max-h-[500px] h-full bg-slate-700 flex justify-center items-center'>
+        //         {/* <TestFrame /> */}
+        //         frmas
+        //         <div className='absolute top-0 right-0'>
+        //             editor
+        //             {/* <Editor components={componentData} /> */}
+        //         </div>
+        //     </div>
+        // </div>
         <main className="relative grid lg:grid-cols-3 h-screen px-2 lg:px-0 md:container">
-            <section className="flex justify-end items-start py-6">
-                <TestFrame />
-            </section>
-            <section className="lg:col-span-2 flex flex-col items-center py-6 lg:px-20 gap-6 h-screen">
-                <div className='overflow-y-auto w-full hide_scrollbar flex flex-col gap-5 pb-20 lg:pb-0 '>
-                    <div className='hidden'>
-                        <Head heads={componentData.heads} />
-                        <Body bodies={componentData.bodies} />
-                        <Face faces={componentData.faces} />
-                        <Beard beards={componentData.beards} />
-                        <Accessory masks={componentData.masks} glasses={componentData.glasses} />
-                        <Color />
+            <section className="flex justify-center items-center lg:justify-end lg:items-start py-6">
+                <div className='relative w-full'>
+                    <TestFrame />
+                    <div className='absolute top-0 right-0'>
+                        <Editor components={componentData} />
                     </div>
+                </div>
+            </section>
+            <section className="lg:col-span-2 hidden lg:flex flex-col items-center py-6 lg:px-20 gap-6 h-screen">
+                <div className='overflow-y-auto w-full hide_scrollbar flex flex-col gap-5 pb-20 lg:pb-0 '>
                     <Card className='w-full rounded-md p-6'>
                         <CardContent className="grid gap-4 p-0">
-                            <Tabs defaultValue="head" >
-                                <TabsList className="grid w-full grid-cols-6 mb-4">
-                                    <TabsTrigger value="color">Color</TabsTrigger>
-                                    <TabsTrigger value="head">Head</TabsTrigger>
-                                    <TabsTrigger value="body">Body</TabsTrigger>
-                                    <TabsTrigger value="face">Face</TabsTrigger>
-                                    <TabsTrigger value="beard">Beard</TabsTrigger>
-                                    <TabsTrigger value="accessory">Accessory</TabsTrigger>
-                                </TabsList>
-                                <TabsContent value="color">
-                                    <Color />
-                                </TabsContent>
-                                <TabsContent value="head">
-                                    <Head heads={componentData.heads} />
-                                </TabsContent>
-                                <TabsContent value="body">
-                                    <Body bodies={componentData.bodies} />
-                                </TabsContent>
-                                <TabsContent value="face">
-                                    <Face faces={componentData.faces} />
-                                </TabsContent>
-                                <TabsContent value="beard">
-                                    <Beard beards={componentData.beards} />
-                                </TabsContent>
-                                <TabsContent value="accessory">
-                                    <Accessory masks={componentData.masks} glasses={componentData.glasses} />
-                                </TabsContent>
-                            </Tabs>
-
+                            <EditAvtar components={componentData} />
                         </CardContent>
                     </Card>
                 </div>

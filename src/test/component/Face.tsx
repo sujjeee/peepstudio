@@ -4,6 +4,7 @@ import React from 'react'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
 import { usePeep } from '@/lib/context/PeepContext'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 interface FaceProps {
     faces: any
@@ -12,11 +13,11 @@ interface FaceProps {
 const Face: React.FC<FaceProps> = ({ faces }) => {
     const { setPeepData, data } = usePeep()
     return (
-        <div className="grid gap-4">
+        <ScrollArea className="h-[350px] lg:h-auto">
             <RadioGroup
                 key={data.face}
                 defaultValue={data.face}
-                className="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-9 gap-2 mx-auto">
+                className="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-9 gap-2 mx-auto">
                 {faces.map((face: any, index: any) => (
                     <div key={index}>
                         <RadioGroupItem
@@ -44,7 +45,7 @@ const Face: React.FC<FaceProps> = ({ faces }) => {
                     </div>
                 ))}
             </RadioGroup>
-        </div>
+        </ScrollArea>
     )
 }
 

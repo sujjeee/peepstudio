@@ -13,7 +13,6 @@ import { usePeep } from '@/lib/context/PeepContext'
 
 export default function Home() {
   const { data } = usePeep()
-  console.log("edit value", data.edit)
   return (
     <main className={cn("relative grid lg:grid-cols-3 h-screen px-2 lg:px-0 md:container",
       {

@@ -4,6 +4,7 @@ import React from 'react'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { usePeep } from '@/lib/context/PeepContext'
 import { Label } from '@/components/ui/label'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 interface BeardsProps {
     beards: any
@@ -13,11 +14,11 @@ const Beard: React.FC<BeardsProps> = ({ beards }) => {
     const { data, setPeepData } = usePeep()
 
     return (
-        <div className="grid gap-4">
+        <ScrollArea className="h-[350px] lg:h-auto">
             <RadioGroup
                 key={data.head}
                 defaultValue={data.beard}
-                className="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-9 gap-2 mx-auto">
+                className="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-9 gap-2 mx-auto">
                 {beards.map((beard: any, index: any) => (
                     <div key={index}>
                         <RadioGroupItem
@@ -46,7 +47,7 @@ const Beard: React.FC<BeardsProps> = ({ beards }) => {
                     </div>
                 ))}
             </RadioGroup>
-        </div>
+        </ScrollArea>
     )
 }
 

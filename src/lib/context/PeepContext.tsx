@@ -34,6 +34,7 @@ export const PeepContextProvider = ({ children }: { children: React.ReactNode })
     };
 
     const refreshData = () => {
+
         setData((prevState) => ({
             ...prevState,
             refresh: !prevState.refresh,
