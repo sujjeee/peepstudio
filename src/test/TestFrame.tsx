@@ -67,25 +67,27 @@ export default function TestFrame() {
             <div id="avatar-parent" className="w-full sm:w-96 rounded-md overflow-hidden shadow-sm" >
                 <div id="avatar-wrapper" className=" relative h-full w-full" style={{ background: data.frameColor }}>
                     <svg viewBox="0 0 1400 1400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                        <g id="person" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" transform="translate(100, 100)">
-                            <g id="body" transform="translate(147.000000, 575.000000)">
-                                {selectedBodyComponent}
-                            </g>
-                            <g id="top" transform="translate(0,10)">
-                                <g id="head" transform="translate(372.000000, 150.000000)">
-                                    {selectedHeadComponent}
+                        <g transform={`translate(${data.x_axis}, ${data.y_axis}) scale(${data.scale})`} >
+                            <g id="person" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" transform="translate(100, 100)">
+                                <g id="body" transform="translate(147.000000, 575.000000)">
+                                    {selectedBodyComponent}
                                 </g>
-                                <g id="face" transform="translate(531.000000, 336.000000)" fill="#000000">
-                                    {selectedFaceComponent}
-                                </g>
-                                <g id="beard/*-None" transform="translate(494.999934, 487.999659)">
-                                    {selectedBeardComponent}
-                                </g>
-                                <g id="mask/*-None" transform="translate(400.999934, 420.999659)">
-                                    {selectedMaskComponent}
-                                </g>
-                                <g id="accessory/*-None" transform="translate(419.000000, 391.000000)">
-                                    {selectedAccessoryComponent}
+                                <g id="top" transform="translate(0,10)">
+                                    <g id="head" transform="translate(372.000000, 150.000000)">
+                                        {selectedHeadComponent}
+                                    </g>
+                                    <g id="face" transform="translate(531.000000, 336.000000)" fill="#000000">
+                                        {selectedFaceComponent}
+                                    </g>
+                                    <g id="beard/*-None" transform="translate(494.999934, 487.999659)">
+                                        {selectedBeardComponent}
+                                    </g>
+                                    <g id="mask/*-None" transform="translate(400.999934, 420.999659)">
+                                        {selectedMaskComponent}
+                                    </g>
+                                    <g id="accessory/*-None" transform="translate(419.000000, 391.000000)">
+                                        {selectedAccessoryComponent}
+                                    </g>
                                 </g>
                             </g>
                         </g>

@@ -5,6 +5,9 @@ type ComponentData = {
 };
 
 interface PeepData {
+    x_axis: number
+    y_axis: number
+    scale: number
     edit: boolean
     refresh: boolean
     skinColor: string;

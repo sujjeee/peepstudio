@@ -12,7 +12,7 @@ export default function RandomData() {
         const elementToCapture = document.getElementById('avatar-wrapper');
 
         if (elementToCapture) {
-            const scale = 10;
+            const scale = 15;
 
             html2canvas(elementToCapture, {
                 scale: scale,

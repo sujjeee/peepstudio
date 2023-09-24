@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 interface PeepContextType {
     data: PeepData;
-    setPeepData: (name: keyof PeepData, value: string) => void;
+    setPeepData: (name: keyof PeepData, value: number | string) => void;
     refreshData: () => void;
     toggleEdit: () => void;
 }
@@ -12,6 +12,9 @@ const PeepContext = createContext<PeepContextType | undefined>(undefined);
 export const PeepContextProvider = ({ children }: { children: React.ReactNode }) => {
 
     const [data, setData] = useState<PeepData>({
+        x_axis: 0,
+        y_axis: 0,
+        scale: 1,
         edit: false,
         refresh: false,
         skinColor: "#D08B5B",
@@ -26,7 +29,7 @@ export const PeepContextProvider = ({ children }: { children: React.ReactNode })
         accessory: "",
     });
 
-    const setPeepData = (name: keyof PeepData, value: string) => {
+    const setPeepData = (name: keyof PeepData, value: number | string) => {
         setData((prevState) => ({
             ...prevState,
             [name]: value,

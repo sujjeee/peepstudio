@@ -7,17 +7,12 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card'
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from "@/components/ui/tabs"
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
 import { usePeep } from '@/lib/context/PeepContext'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { Slider } from '@/components/ui/slider'
 
 interface SkinsProps {
 
@@ -183,7 +178,66 @@ const Colors: React.FC<SkinsProps> = ({ }) => {
                         />
                     </CardContent>
                 </Card>
+                <Card >
+                    <CardHeader>
+                        <CardTitle>Wallpaper</CardTitle>
+                    </CardHeader>
+                    <div className='grid grid-cols-2 '>
+                        <div className='flex flex-col w-full'>
+                            <CardHeader>
+                                <CardTitle>Resize X</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <Slider
+                                    defaultValue={[data.x_axis]}
+                                    max={300}
+                                    step={2}
+                                    className="w-full"
+                                    onValueChange={(newValue: number[]) => {
+                                        console.log("chmaging value", data.x_axis)
+                                        setPeepData("x_axis", newValue[0])
+                                    }}
+                                />
+                            </CardContent>
+                        </div>
+                        <div className='flex flex-col w-full'>
+                            <CardHeader>
+                                <CardTitle>Resize Y</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <Slider
+                                    defaultValue={[data.y_axis]}
+                                    max={300}
+                                    step={2}
+                                    className="w-full"
+                                    onValueChange={(newValue: number[]) => {
+                                        console.log("chmaging value", data.y_axis)
+                                        setPeepData("y_axis", newValue[0])
+                                    }}
+                                />
+                            </CardContent>
+                        </div>
 
+                        <div className='flex flex-col w-full'>
+                            <CardHeader >
+                                <CardTitle>Scale</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <Slider
+                                    defaultValue={[data.scale]}
+                                    max={1.5}
+                                    step={0.1}
+                                    className="w-full"
+                                    onValueChange={(newValue: number[]) => {
+                                        console.log("chmaging value", data.scale)
+                                        setPeepData("scale", newValue[0])
+                                    }}
+                                />
+                            </CardContent>
+                        </div>
+
+                    </div>
+                </Card>
             </div>
         </ScrollArea>
     )
