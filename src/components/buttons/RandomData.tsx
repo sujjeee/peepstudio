@@ -9,21 +9,18 @@ export default function RandomData() {
     const { refreshData } = usePeep()
 
     const handleDownloadImage = () => {
-        const elementToCapture = document.getElementById('avatar-parent');
+        const elementToCapture = document.getElementById('avatar-wrapper');
 
         if (elementToCapture) {
-            const scale = 10; // Adjust the scale to achieve the desired resolution (e.g., 8 times)
+            const scale = 10;
 
             html2canvas(elementToCapture, {
-                scale: scale, // Set the scale to capture at a higher resolution
+                scale: scale,
             }).then((canvas) => {
-                // Convert canvas to image data URL
                 const imageDataUrl = canvas.toDataURL('image/png');
-
-                // Create a link element to trigger the download
                 const downloadLink = document.createElement('a');
                 downloadLink.href = imageDataUrl;
-                downloadLink.download = 'image.png';
+                downloadLink.download = 'avatar.png';
                 downloadLink.click();
             });
         }

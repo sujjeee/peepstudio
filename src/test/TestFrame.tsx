@@ -64,8 +64,8 @@ export default function TestFrame() {
 
     return (
         <div className='flex flex-col w-full sm:w-96 gap-4 h-full'>
-            <div id="avatar-parent" className="w-full sm:w-96 rounded-md overflow-hidden shadow-sm" style={{ background: data.frameColor }}>
-                <div id="avatar-wrapper" className=" relative h-full w-full">
+            <div id="avatar-parent" className="w-full sm:w-96 rounded-md overflow-hidden shadow-sm" >
+                <div id="avatar-wrapper" className=" relative h-full w-full" style={{ background: data.frameColor }}>
                     <svg viewBox="0 0 1400 1400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                         <g id="person" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" transform="translate(100, 100)">
                             <g id="body" transform="translate(147.000000, 575.000000)">

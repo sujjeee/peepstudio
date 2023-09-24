@@ -89,14 +89,14 @@ export default function Home() {
         // </div>
         <main className="relative grid lg:grid-cols-3 h-screen px-2 lg:px-0 md:container">
             <section className="flex justify-center items-center lg:justify-end lg:items-start py-6">
-                <div className='relative w-full'>
+                <div className='relative w-full sm:w-auto '>
                     <TestFrame />
                     <div className='absolute top-0 right-0'>
                         <Editor components={componentData} />
                     </div>
                 </div>
             </section>
-            <section className="lg:col-span-2 hidden lg:flex flex-col items-center py-6 lg:px-20 gap-6 h-screen">
+            <section className="lg:col-span-2 hidden md:flex flex-col items-center py-6 lg:px-20 gap-6 h-screen">
                 <div className='overflow-y-auto w-full hide_scrollbar flex flex-col gap-5 pb-20 lg:pb-0 '>
                     <Card className='w-full rounded-md p-6'>
                         <CardContent className="grid gap-4 p-0">
