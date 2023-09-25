@@ -2,11 +2,11 @@
 
 <kbd>
     <a href="https://peepstudio.vercel.app">
-    <img alt="PeepStudio is an open source tool that lets you generate random peeps avatars in seconds!" src="https://peepstudio.vercel.app/og.png">
+    <img alt="PeepStudio is an open source tool that lets you generate random peeps avatars in seconds." src="https://peepstudio.vercel.app/og.png">
     </a>
 </kbd>
 
-### PeepStudio is an open source tool that lets you generate random peeps avatars in seconds!
+### PeepStudio is an open source tool that lets you generate random peeps avatars in seconds.
 
 
 ## Features ✨
