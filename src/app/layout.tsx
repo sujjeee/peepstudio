@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
   verification: {
-    google: ""
+    google: "5z2lDnQ6mdG9S2qZm74DNfOk3xdwLR-orzDHc5XiJxs"
   },
   keywords: [
     "custom avatar",
