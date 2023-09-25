@@ -17,7 +17,6 @@ export const event = ({ action, category, label, value }: {
     value?: number;
 }): void => {
     if (typeof window.gtag === 'function' && GA_TRACKING_ID) {
-        console.log("button click track")
         window.gtag("event", action, {
             event_category: category,
             event_label: label,
