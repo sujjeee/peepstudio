@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Shuffle } from 'lucide-react'
 import { usePeep } from '@/lib/context/PeepContext'
 import html2canvas from 'html2canvas';
+import { event } from '@/lib/gtags'
 
 export default function RandomData() {
     const { refreshData } = usePeep()
@@ -22,6 +23,12 @@ export default function RandomData() {
                 downloadLink.href = imageDataUrl;
                 downloadLink.download = 'avatar.png';
                 downloadLink.click();
+
+                event({
+                    action: 'Image Download',
+                    category: 'Download',
+                    label: 'Avatar Image',
+                });
             });
         }
     };
