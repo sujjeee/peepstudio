@@ -4,7 +4,7 @@ const componentNames = [
     'Pomp',
     'FlatTopLong',
     'GrayShort',
-    'HatBeanie',
+    // 'HatBeanie',
     'Shaved2',
     'Bun',
     'Bun2',
