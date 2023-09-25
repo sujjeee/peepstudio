@@ -7,7 +7,7 @@ import GoogleAnalytics from '@/GoogleAnalytics'
 const inter = Inter({ subsets: ['latin'] })
 
 export const siteConfig = {
-  name: "PeepStudio - Generate your own peeps avatar",
+  name: "PeepStudio - Generate your own peeps avatars",
   description: "PeepStudio is an open source tool that lets you generate random peeps avatars in seconds!",
   ogImage: "https://peepstudio.vercel.app/og.png",
   url: "https://peepstudio.vercel.app",
@@ -28,7 +28,9 @@ export const metadata: Metadata = {
     "peeps avatar",
     "avatar generator",
     "custom peeps avatar",
-    "peeps studio"
+    "peeps studio",
+    "peeps",
+    "free avatar"
   ],
   authors: [
     {
